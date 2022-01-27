@@ -5,22 +5,23 @@ function delta = reference(uu,P)
     delta_r_max = uu(4);
     delta_t = uu(5);
     dt = uu(6);
-    t = uu(7);
+    t_0 = uu(7);
+    t = uu(8);
 
     if mode == 0
-        if t >= 0 && t < 3*dt
+        if t >= 0 + t_0 && t < 3*dt + t_0
             delta_e = delta_e_max;
             delta_a = 0;
             delta_r = 0;
-        elseif t >= 3*dt && t < 5*dt
+        elseif t >= 3*dt + t_0 && t < 5*dt + t_0
             delta_e = -delta_e_max;
             delta_a = 0;
             delta_r = 0;
-        elseif  t >= 5*dt && t < 6*dt
+        elseif  t >= 5*dt + t_0 && t < 6*dt + t_0
             delta_e = delta_e_max;
             delta_a = 0;
             delta_r = 0;
-        elseif t >= 6*dt && t < 7*dt
+        elseif t >= 6*dt + t_0 && t < 7*dt + t_0
             delta_e = -delta_e_max;
             delta_a = 0;
             delta_r = 0;
@@ -31,19 +32,19 @@ function delta = reference(uu,P)
         end
 
     elseif mode == 1
-        if t >= 0 && t < 3*dt
+        if t >= 0 + t_0 && t < 3*dt + t_0
             delta_e = 0;
             delta_a = delta_a_max;
             delta_r = 0;
-        elseif t >= 3*dt && t < 5*dt
+        elseif t >= 3*dt + t_0 && t < 5*dt + t_0
             delta_e = 0;
             delta_a = -delta_a_max;
             delta_r = 0;
-        elseif  t >= 5*dt && t < 6*dt
+        elseif  t >= 5*dt + t_0 && t < 6*dt + t_0
             delta_e = 0;
             delta_a = delta_a_max;
             delta_r = 0;
-        elseif t >= 6*dt && t < 7*dt
+        elseif t >= 6*dt + t_0 && t < 7*dt + t_0
             delta_e = 0;
             delta_a = -delta_a_max;
             delta_r = 0;
@@ -54,19 +55,19 @@ function delta = reference(uu,P)
         end
 
     elseif mode == 2
-        if t >= 0 && t < 3*dt
+        if t >= 0 + t_0 && t < 3*dt + t_0
             delta_e = 0;
             delta_a = 0;
             delta_r = delta_r_max;
-        elseif t >= 3*dt && t < 5*dt
+        elseif t >= 3*dt + t_0 && t < 5*dt + t_0
             delta_e = 0;
             delta_a = 0;
             delta_r = -delta_r_max;
-        elseif  t >= 5*dt && t < 6*dt
+        elseif  t >= 5*dt + t_0 && t < 6*dt + t_0
             delta_e = 0;
             delta_a = 0;
             delta_r = delta_r_max;
-        elseif t >= 6*dt && t < 7*dt
+        elseif t >= 6*dt + t_0 && t < 7*dt + t_0
             delta_e = 0;
             delta_a = 0;
             delta_r = -delta_r_max;

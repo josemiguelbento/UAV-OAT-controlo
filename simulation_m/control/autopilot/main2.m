@@ -18,12 +18,14 @@ t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mode = 0;
-delta_e_max = -P.G.delta_e_max;
+%delta_e_max = -P.G.delta_e_max; %-0.5236
+delta_e_max = -7/180*pi;
 delta_a_max = P.G.delta_a_max;
 delta_r_max = P.G.delta_r_max;
-delta_t =0.4;
-dt = 0.5; 
-parameters = [0 mode delta_e_max delta_a_max delta_r_max delta_t dt];
+delta_t =0.0;
+dt = 0.5;
+t_0 = 1;
+parameters = [0 mode delta_e_max delta_a_max delta_r_max delta_t dt t_0];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
