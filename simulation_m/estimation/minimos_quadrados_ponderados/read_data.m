@@ -15,8 +15,9 @@ function [data] = read_data()
 %fid = fopen('txt_logs_wAero\2021-05-07_19.52.txt','rt'); %logs com forças
 %fid = fopen('txt_logs_wAero\2021-05-09_18.49.txt','rt'); %traj.incial
 %fid = fopen('txt_logs_wAero\2021-05-12_12.22.txt','rt'); %melhorzinha
-fid = fopen('txt_logs_wAero\2021-05-13_19.13.txt','rt'); %usar esta
+%fid = fopen('txt_logs_wAero\2021-05-13_19.13.txt','rt'); %usar esta
 %fid = fopen('2020-12-29_23.37_1_0_2.txt','rt');
+fid = fopen('txt_logs_wAccel\2022-03-06_21.01_3_2_1_1.txt','rt'); %3211
 
 
 if fid < 0
@@ -67,33 +68,42 @@ else
             data(i).RCch3    =  str2num(value);
             [value, remain]  =  strtok(remain);
             data(i).RCch4    =  str2num(value);
+            % acrescentei accel aqui
+            [value, remain]  =  strtok(remain);
+            data(i).u_r      =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).ax       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).ay       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).az       =  str2num(value);
 
 % Aerodynamic forces and moments (not used)
 
-            [value, remain]  =  strtok(remain);
-            data(i).F_D      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).F_Y      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).F_L      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fx       =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fy       =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fz       =  str2num(value);
-            [value, remain]  =  strtok(remain);
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_D      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_Y      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_L      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fx       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fy       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fz       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
 %             data(i).l_aero   =  str2num(value);
 %             [value, remain]  =  strtok(remain);
 %             data(i).m_aero   =  str2num(value);
 %             [value, remain]  =  strtok(remain);
 %             data(i).n_aero   =  str2num(value);
 %             [value, remain]  =  strtok(remain);
-            data(i).l        =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).m        =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).n        =  str2num(value);
+%             data(i).l        =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).m        =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).n        =  str2num(value);
         end
     end
 end

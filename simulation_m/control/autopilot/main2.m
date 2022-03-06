@@ -69,3 +69,4 @@ accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %a
 % drawAircraft(pos,att,V,F,facecolors,2e-3)
 morePlots2
 % logTXT
+logTXT_wAccel

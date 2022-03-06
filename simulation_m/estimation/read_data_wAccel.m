@@ -9,7 +9,7 @@
 %dados_log3crudder.txt - longitudinal + lateral coefficients
 
 %fid = fopen('2021-02-23_21.36_3_-3_3__0_0_0.txt','rt');
-fid = fopen('2021-02-24_01.28_1_-1_1__0_0_0.txt','rt');
+fid = fopen('2022-03-06_21.01_3_2_1_1.txt','rt');
 
 
 if fid < 0

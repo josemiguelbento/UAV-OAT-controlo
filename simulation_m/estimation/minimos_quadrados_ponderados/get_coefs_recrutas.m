@@ -130,6 +130,7 @@ k = diag(ones(3,1))*10^(-6); %simplified model
 [n_est] = compute_aero_forces_moments(Cn_est, rho, S_wing, [data.Va], b);
 
 %Plots
+%estes plots dão erro?
 error_plots([data.time], -[data.F_L], FL_est, "FL"); 
 error_plots([data.time], [data.F_D], FD_est, "FD");  
 error_plots([data.time], [data.F_Y], FY_est, "FY"); 
