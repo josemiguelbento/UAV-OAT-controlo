@@ -1,4 +1,4 @@
-savepath = strcat(pwd,'\txt_logs_wAero\');
+savepath = strcat(pwd,'\txt_logs\');
 date_str = char(datetime('now','Format','yyyy-MM-dd_HH.mm'));
 filename = strcat(savepath,date_str,'.txt');
 
