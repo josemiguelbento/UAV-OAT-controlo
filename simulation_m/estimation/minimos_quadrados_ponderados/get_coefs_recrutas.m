@@ -53,6 +53,10 @@ C.C_n_r         = -0.35;
 C.C_n_delta_a   = 0.06;
 C.C_n_delta_r   = -0.032;
 
+[CL2_coeffs] = [C.C_L_0; C.C_L_alpha; C.C_L_q; C.C_L_delta_e];
+[CD2_coeffs] = [C.C_D_0; C.C_D_alpha; C.C_D_q; C.C_D_delta_e];
+[Cm2_coeffs] = [C.C_m_0; C.C_m_alpha; C.C_m_q; C.C_m_delta_e];
+
 %Get the data from the logs into a struct  
 [data] = read_data();
 
@@ -100,8 +104,8 @@ C.C_n_delta_r   = -0.032;
 [X_lat] = lat_variables_matrix(data, b);
 
 %Compute CY, Cl and Cn coefficients with WLS 
-%k = diag(ones(6,1))*10^(-6); 
-k = diag(ones(3,1))*10^(-6); %simplified model
+k = diag(ones(6,1))*10^(-6); %completo lateral
+%k = diag(ones(3,1))*10^(-6); %simplified model
 [CY_coeffs, W_CY] = wls(X_lat, CY', k);
 [Cl_coeffs, W_Cl] = wls(X_lat, Cl', k);
 [Cn_coeffs, W_Cn] = wls(X_lat, Cn', k);
@@ -146,24 +150,34 @@ k = diag(ones(3,1))*10^(-6); %simplified model
 %[Cl_est] = lat_compute_total_coeff(Cl_coeffs, data, b);
 %[Cn_est] = lat_compute_total_coeff(Cn_coeffs, data, b);
 
-%estes coeficientes dão erro
 [CL_real] = compute_coefficients(-[data.F_L], rho, S_wing, [data.Va], 1); 
 [CD_real] = compute_coefficients([data.F_D], rho, S_wing, [data.Va], 1);
-[CY_real] = compute_coefficients([data.F_Y], rho, S_wing, [data.Va], 1);
+% [CY_real] = compute_coefficients([data.F_Y], rho, S_wing, [data.Va], 1);
 
-[Cl_real] = compute_coefficients([data.l], rho, S_wing, [data.Va], b); 
+% [Cl_real] = compute_coefficients([data.l], rho, S_wing, [data.Va], b); 
 [Cm_real] = compute_coefficients([data.m], rho, S_wing, [data.Va], c);
-[Cn_real] = compute_coefficients([data.n], rho, S_wing, [data.Va], b);
+% [Cn_real] = compute_coefficients([data.n], rho, S_wing, [data.Va], b);
+
+% [CL2_real] = long_compute_total_coeff(CL2_coeffs, data, c);
+% [CD2_real] = long_compute_total_coeff(CD2_coeffs, data, c);
+% [Cm2_real] = long_compute_total_coeff(Cm2_coeffs, data, c);
+
+% [CY2_real] = lat_compute_total_coeff(CY2_coeffs, data, b);
+% [Cl2_real] = lat_compute_total_coeff(Cl2_coeffs, data, b);
+% [Cn2_real] = lat_compute_total_coeff(Cn2_coeffs, data, b);
 
 
 %Plots
-%estes também
 error_plots([data.time], CL_real, CL_est, "CL"); 
 error_plots([data.time], CD_real, CD_est, "CD"); 
-error_plots([data.time], CY_real, CY_est, "CY"); 
-error_plots([data.time], Cl_real, Cl_est, "Cl"); 
+% error_plots([data.time], CY_real, CY_est, "CY"); 
+% error_plots([data.time], Cl_real, Cl_est, "Cl"); 
 error_plots([data.time], Cm_real, Cm_est, "Cm"); 
-error_plots([data.time], Cn_real, Cn_est, "Cn"); 
+% error_plots([data.time], Cn_real, Cn_est, "Cn"); 
+
+% error_plots([data.time], CL_real, CL2_real, "CL"); 
+% error_plots([data.time], CD_real, CD2_real, "CD"); 
+% error_plots([data.time], Cm_real, Cm2_real, "Cm"); 
 
 %% Modelo simplificado
 

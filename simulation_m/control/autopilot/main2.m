@@ -19,7 +19,7 @@ t = 0:P.Ts:T;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mode = 0;
 %delta_e_max = -P.G.delta_e_max; %-0.5236
-delta_e_max = -7/180*pi;
+delta_e_max = -3/180*pi;
 delta_a_max = P.G.delta_a_max;
 delta_r_max = P.G.delta_r_max;
 delta_t =0.4;

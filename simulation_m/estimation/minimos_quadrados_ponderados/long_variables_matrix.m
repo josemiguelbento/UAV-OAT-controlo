@@ -6,11 +6,11 @@ end
 
 %Variables matrix 
 %For the complete model 
-%X = [ ones(length(data),1) [data.AoA]' q_nondim' [data.RCch2]'];
+X = [ ones(length(data),1) [data.AoA]' q_nondim' [data.RCch2]'];
 
 %X = [ ones(length(data),1) [data.AoA]' [data.q]' [data.RCch2]'];
 
 %For the simplified model 
-X = [ ones(length(data),1) [data.AoA]' [data.RCch2]'];
+%X = [ ones(length(data),1) [data.AoA]' [data.RCch2]'];
 
 end
