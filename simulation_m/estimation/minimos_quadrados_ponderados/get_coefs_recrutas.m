@@ -61,13 +61,21 @@ C.C_n_delta_r   = -0.032;
 [data] = read_data();
 
 %Compute linear accelerations - finite differences method 
-[u_dot] = finite_differences([data.u]); 
-[v_dot] = finite_differences([data.v]); 
-[w_dot] = finite_differences([data.w]); 
+% [u_dot] = finite_differences([data.u]); 
+% [v_dot] = finite_differences([data.v]); 
+% [w_dot] = finite_differences([data.w]); 
 
+%acceleration from data, without using finite differences above
+[u_dot] = [data.ax];
+[v_dot] = [data.ay];
+[w_dot] = [data.az];
 
 %Compute external forces
 [fx, fy, fz] = external_forces(mass, u_dot, v_dot, w_dot, data);
+
+% [fx] = [data.fx];
+% [fy] = [data.fy];
+% [fz] = [data.fz];
 
 %Compute lift, drag and lateral forces 
 [F_Lift, Fy, F_Drag] = compute_forces(mass, g, rho, S_prop, k_motor, C_prop, data, fx, fy, fz);
@@ -85,7 +93,11 @@ C.C_n_delta_r   = -0.032;
 [r_dot] = finite_differences([data.r]); 
 
 %Compute roll, pich and yaw moments
-[l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
+ [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
+
+% [l] = [data.l];
+% [m] = [data.m];
+% [n] = [data.n];
 
 %Compute roll, pitch and yaw moment coefficients (extra term is for chord-c and wingspan-b)
 [Cl] = compute_coefficients(l, rho, S_wing, [data.Va], b); 
@@ -120,18 +132,18 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 [Cm_est] = long_compute_total_coeff(Cm_coeffs, data, c);
 
 
-[FL_est] = compute_aero_forces_moments(CL_est, rho, S_wing, [data.Va], 1);
-[FD_est] = compute_aero_forces_moments(CD_est, rho, S_wing, [data.Va], 1);
-[m_est] = compute_aero_forces_moments(Cm_est, rho, S_wing, [data.Va], c);
+% [FL_est] = compute_aero_forces_moments(CL_est, rho, S_wing, [data.Va], 1);
+% [FD_est] = compute_aero_forces_moments(CD_est, rho, S_wing, [data.Va], 1);
+% [m_est] = compute_aero_forces_moments(Cm_est, rho, S_wing, [data.Va], c);
 
 [CY_est] = lat_compute_total_coeff(CY_coeffs, data, b);
 [Cl_est] = lat_compute_total_coeff(Cl_coeffs, data, b);
 [Cn_est] = lat_compute_total_coeff(Cn_coeffs, data, b);
 
 
-[FY_est] = compute_aero_forces_moments(CY_est, rho, S_wing, [data.Va], 1);
-[l_est] = compute_aero_forces_moments(Cl_est, rho, S_wing, [data.Va], b);
-[n_est] = compute_aero_forces_moments(Cn_est, rho, S_wing, [data.Va], b);
+% [FY_est] = compute_aero_forces_moments(CY_est, rho, S_wing, [data.Va], 1);
+% [l_est] = compute_aero_forces_moments(Cl_est, rho, S_wing, [data.Va], b);
+% [n_est] = compute_aero_forces_moments(Cn_est, rho, S_wing, [data.Va], b);
 
 %Plots
 % error_plots([data.time], -[data.F_L], FL_est, "FL"); 
@@ -142,22 +154,19 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 % error_plots([data.time], [data.n], n_est, "n"); 
 
 %%
-%[CL_est] = long_compute_total_coeff(CL_coeffs, data, c);
-%[CD_est] = long_compute_total_coeff(CD_coeffs, data, c);
-%[Cm_est] = long_compute_total_coeff(Cm_coeffs, data, c);
 
-%[CY_est] = lat_compute_total_coeff(CY_coeffs, data, b);
-%[Cl_est] = lat_compute_total_coeff(Cl_coeffs, data, b);
-%[Cn_est] = lat_compute_total_coeff(Cn_coeffs, data, b);
+% Convert Aero forces to stability frame to compute coefficients
+[FL FD] = aero_forces_bodytostab(data, [data.F_L], [data.F_D]);
 
-[CL_real] = compute_coefficients(-[data.F_L], rho, S_wing, [data.Va], 1); 
-[CD_real] = compute_coefficients([data.F_D], rho, S_wing, [data.Va], 1);
+[CL_real] = compute_coefficients(FL, rho, S_wing, [data.Va], 1); 
+[CD_real] = compute_coefficients(FD, rho, S_wing, [data.Va], 1);
 % [CY_real] = compute_coefficients([data.F_Y], rho, S_wing, [data.Va], 1);
 
 % [Cl_real] = compute_coefficients([data.l], rho, S_wing, [data.Va], b); 
 [Cm_real] = compute_coefficients([data.m], rho, S_wing, [data.Va], c);
 % [Cn_real] = compute_coefficients([data.n], rho, S_wing, [data.Va], b);
 
+% Acho q é melhor usar estes para calcular os reais
 % [CL2_real] = long_compute_total_coeff(CL2_coeffs, data, c);
 % [CD2_real] = long_compute_total_coeff(CD2_coeffs, data, c);
 % [Cm2_real] = long_compute_total_coeff(Cm2_coeffs, data, c);

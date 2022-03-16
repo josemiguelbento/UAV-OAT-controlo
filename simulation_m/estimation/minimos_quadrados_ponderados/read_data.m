@@ -18,8 +18,11 @@ function [data] = read_data()
 %fid = fopen('txt_logs_wAero\2021-05-13_19.13.txt','rt'); %usar esta
 %fid = fopen('2020-12-29_23.37_1_0_2.txt','rt');
 %fid = fopen('txt_logs_wAccel\2022-03-06_21.01_3_2_1_1.txt','rt'); %3211
-%fid = fopen('txt_logs_wAero\2022-03-10_19.58.txt','rt')';
-fid = fopen('txt_logs_wAero\2022-03-11_19.32.txt','rt')';
+%fid = fopen('txt_logs_wAero\2022-03-10_19.58.txt','rt');
+%fid = fopen('txt_logs_wAero\2022-03-11_19.32.txt','rt');
+
+%fid = fopen('txt_logs_wAeroAccel\2022-03-13_19.42.txt','rt');
+fid = fopen('txt_logs_wAeroAccel\2022-03-16_02.26.txt','rt');
 
 
 if fid < 0
@@ -106,6 +109,16 @@ else
             data(i).m        =  str2num(value);
             [value, remain]  =  strtok(remain);
             data(i).n        =  str2num(value);
+
+            % acrescentar accel aqui para o logs_wAeroAccel ()
+            [value, remain]  =  strtok(remain);
+            data(i).u_r      =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).ax       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).ay       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).az       =  str2num(value);
         end
     end
 end

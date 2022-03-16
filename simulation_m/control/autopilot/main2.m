@@ -61,13 +61,18 @@ F_body = FM.signals.values(:,1:3); % [fx fy fz]
 T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 
 % Total Acceleration (expressed in the body frame)
-accel(:,1) = 1/P.mass * F_body(:,1) + P.gravity*sin(att(:,2)); % ax
-accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %ay
-accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
+% accel(:,1) = 1/P.mass * F_body(:,1) + P.gravity*sin(att(:,2)); % ax
+% accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %ay
+% accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
+accel(:,1) = 1/P.mass * F_body(:,1); % ax
+accel(:,2) = 1/P.mass * F_body(:,2); %ay
+accel(:,3) = 1/P.mass * F_body(:,3); %az
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % drawAircraft(pos,att,V,F,facecolors,2e-3)
 morePlots2
 % logTXT
 % logTXT_wAccel
-logTXT_wAero
+% logTXT_wAero
+logTXT_wAeroAccel
