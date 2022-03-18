@@ -154,11 +154,11 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 
 [CL_real] = compute_coefficients(FL, rho, S_wing, [data.Va], 1); 
 [CD_real] = compute_coefficients(FD, rho, S_wing, [data.Va], 1);
-% [CY_real] = compute_coefficients([data.F_Y], rho, S_wing, [data.Va], 1);
+[CY_real] = compute_coefficients([data.F_Y], rho, S_wing, [data.Va], 1);
 
-% [Cl_real] = compute_coefficients([data.l], rho, S_wing, [data.Va], b); 
+[Cl_real] = compute_coefficients([data.l], rho, S_wing, [data.Va], b); 
 [Cm_real] = compute_coefficients([data.m], rho, S_wing, [data.Va], c);
-% [Cn_real] = compute_coefficients([data.n], rho, S_wing, [data.Va], b);
+[Cn_real] = compute_coefficients([data.n], rho, S_wing, [data.Va], b);
 
 % Acho q é melhor usar estes para calcular os reais
 % [CL2_real] = long_compute_total_coeff(CL2_coeffs, data, c);
@@ -171,12 +171,12 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 
 
 %Plots
-error_plots([data.time], CL_real, CL_est, "CL"); 
-error_plots([data.time], CD_real, CD_est, "CD"); 
-% error_plots([data.time], CY_real, CY_est, "CY"); 
-% error_plots([data.time], Cl_real, Cl_est, "Cl"); 
-error_plots([data.time], Cm_real, Cm_est, "Cm"); 
-% error_plots([data.time], Cn_real, Cn_est, "Cn"); 
+% error_plots([data.time], CL_real, CL_est, "CL"); 
+% error_plots([data.time], CD_real, CD_est, "CD"); 
+error_plots([data.time], CY_real, CY_est, "CY"); 
+error_plots([data.time], Cl_real, Cl_est, "Cl"); 
+% error_plots([data.time], Cm_real, Cm_est, "Cm"); 
+error_plots([data.time], Cn_real, Cn_est, "Cn"); 
 
 % error_plots([data.time], CL_real, CL2_real, "CL"); 
 % error_plots([data.time], CD_real, CD2_real, "CD"); 

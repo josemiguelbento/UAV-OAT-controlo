@@ -17,11 +17,13 @@ T = 10; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-mode = 0;
+mode = 2;
 %delta_e_max = -P.G.delta_e_max; %-0.5236
 delta_e_max = -3/180*pi;
-delta_a_max = P.G.delta_a_max;
-delta_r_max = P.G.delta_r_max;
+delta_a_max = -P.G.delta_a_max;
+%delta_a_max = ;
+%delta_r_max = -P.G.delta_r_max;
+delta_r_max = -25/180*pi;
 delta_t =0.4;
 dt = 0.5;
 t_0 = 1;
@@ -53,7 +55,7 @@ chi = atan2(Va.*sin(att(:,3))+wind_data(:,2), ...
 delta = delta.signals.values; % [delta_e delta_a delta_r delta_t]
 
 % Aerodynamic Forces and Moments (expressed in the body frame)
-F_aero = aero.signals.values(:,1:3); % [Lift Drag Fy]
+F_aero = aero.signals.values(:,1:3); % [Drag Fy Lift]
 T_aero = aero.signals.values(:,4:6); % [L M N]
 
 % Total Forces and Moments (expressed in the body frame)

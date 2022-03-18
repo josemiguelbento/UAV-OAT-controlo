@@ -17,12 +17,12 @@ function [data] = read_data()
 %fid = fopen('txt_logs_wAero\2021-05-12_12.22.txt','rt'); %melhorzinha
 %fid = fopen('txt_logs_wAero\2021-05-13_19.13.txt','rt'); %usar esta
 %fid = fopen('2020-12-29_23.37_1_0_2.txt','rt');
-%fid = fopen('txt_logs_wAccel\2022-03-06_21.01_3_2_1_1.txt','rt'); %3211
-%fid = fopen('txt_logs_wAero\2022-03-10_19.58.txt','rt');
-%fid = fopen('txt_logs_wAero\2022-03-11_19.32.txt','rt');
 
-% fid = fopen('txt_logs_wAeroAccel\2022-03-16_02.26.txt','rt');
-fid = fopen('txt_logs_wAeroAccel\2022-03-18_00.29.txt','rt');
+%%%%%%%%%%%%%%%%% 3211 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% fid = fopen('txt_logs_wAeroAccel\2022-03-18_00.29.txt','rt'); %-3<d_e<3
+% fid = fopen('txt_logs_wAeroAccel\2022-03-18_19.57.txt','rt'); %-5<d_e<5
+% fid = fopen('txt_logs_wAeroAccel\2022-03-18_20.30.txt','rt'); %-20<d_a<20
+fid = fopen('txt_logs_wAeroAccel\2022-03-18_21.02.txt','rt'); %-25<d_r<25
 
 
 if fid < 0
