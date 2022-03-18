@@ -21,8 +21,8 @@ function [data] = read_data()
 %fid = fopen('txt_logs_wAero\2022-03-10_19.58.txt','rt');
 %fid = fopen('txt_logs_wAero\2022-03-11_19.32.txt','rt');
 
-%fid = fopen('txt_logs_wAeroAccel\2022-03-13_19.42.txt','rt');
-fid = fopen('txt_logs_wAeroAccel\2022-03-16_02.26.txt','rt');
+% fid = fopen('txt_logs_wAeroAccel\2022-03-16_02.26.txt','rt');
+fid = fopen('txt_logs_wAeroAccel\2022-03-18_00.29.txt','rt');
 
 
 if fid < 0

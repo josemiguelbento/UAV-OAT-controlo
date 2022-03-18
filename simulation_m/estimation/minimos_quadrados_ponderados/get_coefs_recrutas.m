@@ -73,10 +73,6 @@ C.C_n_delta_r   = -0.032;
 %Compute external forces
 [fx, fy, fz] = external_forces(mass, u_dot, v_dot, w_dot, data);
 
-% [fx] = [data.fx];
-% [fy] = [data.fy];
-% [fz] = [data.fz];
-
 %Compute lift, drag and lateral forces 
 [F_Lift, Fy, F_Drag] = compute_forces(mass, g, rho, S_prop, k_motor, C_prop, data, fx, fy, fz);
 
@@ -94,10 +90,8 @@ C.C_n_delta_r   = -0.032;
 
 %Compute roll, pich and yaw moments
  [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
-
-% [l] = [data.l];
-% [m] = [data.m];
-% [n] = [data.n];
+ % quando fizermos para os laterais talvez seja preciso subtrair o T de
+ % propulsao no l?
 
 %Compute roll, pitch and yaw moment coefficients (extra term is for chord-c and wingspan-b)
 [Cl] = compute_coefficients(l, rho, S_wing, [data.Va], b); 

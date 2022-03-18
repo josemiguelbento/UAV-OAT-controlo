@@ -64,9 +64,9 @@ T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 % accel(:,1) = 1/P.mass * F_body(:,1) + P.gravity*sin(att(:,2)); % ax
 % accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %ay
 % accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
-accel(:,1) = 1/P.mass * F_body(:,1); % ax
-accel(:,2) = 1/P.mass * F_body(:,2); %ay
-accel(:,3) = 1/P.mass * F_body(:,3); %az
+accel(:,1) = 1/P.mass * F_body(:,1) + ang_v(:,3).*v(:,2) - ang_v(:,2).*v(:,3); %udot
+accel(:,2) = 1/P.mass * F_body(:,2) + ang_v(:,1).*v(:,3) - ang_v(:,3).*v(:,1); %vdot
+accel(:,3) = 1/P.mass * F_body(:,3) + ang_v(:,2).*v(:,1) - ang_v(:,1).*v(:,2); %wdot
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
