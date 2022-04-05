@@ -58,9 +58,19 @@ C.C_n_delta_r   = -0.032;
 [Cm2_coeffs] = [C.C_m_0; C.C_m_alpha; C.C_m_q; C.C_m_delta_e];
 
 %Get the data from the logs into a struct  
-[data] = read_data();
+%% Longitudinal
+%[data] = read_data('txt_logs_wAeroAccel\2022-03-18_00.29.txt'); %d_e
 
-%Compute linear accelerations - finite differences method 
+%% Lateral
+[data1] = read_data('txt_logs_wAeroAccel\2022-03-18_20.30.txt'); %d_a
+[data2] = read_data('txt_logs_wAeroAccel\2022-03-18_21.02.txt'); %d_r
+data1_t = struct2table(data1);
+data2_t = struct2table(data2);
+data_t = [data1_t; data2_t];
+data = table2struct(data_t);
+
+
+%% Compute linear accelerations - finite differences method 
 % [u_dot] = finite_differences([data.u]); 
 % [v_dot] = finite_differences([data.v]); 
 % [w_dot] = finite_differences([data.w]); 
@@ -92,6 +102,10 @@ C.C_n_delta_r   = -0.032;
  [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
  % quando fizermos para os laterais talvez seja preciso subtrair o T de
  % propulsao no l?
+ %l = l - -P.k_T_P*(P.k_Omega*delta_t)^2; % ir buscar variaveis que faltam
+% l = [data.l];
+% m = [data.m];
+% n = [data.n];
 
 %Compute roll, pitch and yaw moment coefficients (extra term is for chord-c and wingspan-b)
 [Cl] = compute_coefficients(l, rho, S_wing, [data.Va], b); 
@@ -171,11 +185,11 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 
 
 %Plots
-% error_plots([data.time], CL_real, CL_est, "CL"); 
-% error_plots([data.time], CD_real, CD_est, "CD"); 
+%error_plots([data.time], CL_real, CL_est, "CL"); 
+%error_plots([data.time], CD_real, CD_est, "CD"); 
 error_plots([data.time], CY_real, CY_est, "CY"); 
 error_plots([data.time], Cl_real, Cl_est, "Cl"); 
-% error_plots([data.time], Cm_real, Cm_est, "Cm"); 
+%error_plots([data.time], Cm_real, Cm_est, "Cm"); 
 error_plots([data.time], Cn_real, Cn_est, "Cn"); 
 
 % error_plots([data.time], CL_real, CL2_real, "CL"); 

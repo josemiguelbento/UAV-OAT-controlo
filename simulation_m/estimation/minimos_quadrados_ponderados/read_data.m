@@ -8,7 +8,7 @@
 %2020-05-21_23.07.txt - longitudinal coefficients
 %dados_log3crudder.txt - longitudinal + lateral coefficients
 
-function [data] = read_data()
+function [data] = read_data(filepath)
 
 %fid = fopen('2021-05-01_11.44.txt','rt');
 %fid = fopen('2021-04-28_22.50.txt','rt');
@@ -18,12 +18,16 @@ function [data] = read_data()
 %fid = fopen('txt_logs_wAero\2021-05-13_19.13.txt','rt'); %usar esta
 %fid = fopen('2020-12-29_23.37_1_0_2.txt','rt');
 
-%%%%%%%%%%%%%%%%% 3211 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% 3211 longitudinal%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fid = fopen('txt_logs_wAeroAccel\2022-03-18_00.29.txt','rt'); %-3<d_e<3
 % fid = fopen('txt_logs_wAeroAccel\2022-03-18_19.57.txt','rt'); %-5<d_e<5
-% fid = fopen('txt_logs_wAeroAccel\2022-03-18_20.30.txt','rt'); %-20<d_a<20
-fid = fopen('txt_logs_wAeroAccel\2022-03-18_21.02.txt','rt'); %-25<d_r<25
 
+%%%%%%%%%%%%%%% 3211 laterais %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% fid = fopen('txt_logs_wAeroAccel\2022-03-18_20.30.txt','rt'); %-20<d_a<20
+% fid = fopen('txt_logs_wAeroAccel\2022-03-18_21.02.txt','rt'); %-25<d_r<25
+
+
+fid = fopen(filepath,'rt');
 
 if fid < 0
     disp('Error opening the file ".txt"');

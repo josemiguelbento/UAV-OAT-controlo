@@ -17,7 +17,7 @@ T = 10; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-mode = 2;
+mode = 0;
 %delta_e_max = -P.G.delta_e_max; %-0.5236
 delta_e_max = -3/180*pi;
 delta_a_max = -P.G.delta_a_max;
@@ -77,4 +77,4 @@ morePlots2
 % logTXT
 % logTXT_wAccel
 % logTXT_wAero
-logTXT_wAeroAccel
+% logTXT_wAeroAccel
