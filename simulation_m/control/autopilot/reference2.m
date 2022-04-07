@@ -76,6 +76,50 @@ function delta = reference(uu,P)
             delta_a = 0;
             delta_r = 0;
         end
+    
+    elseif mode == 3
+        if t >= 0 + t_0 && t < 3*dt + t_0
+            delta_e = 0;
+            delta_a = delta_a_max;
+            delta_r = 0;
+        elseif t >= 3*dt + t_0 && t < 5*dt + t_0
+            delta_e = 0;
+            delta_a = -delta_a_max;
+            delta_r = 0;
+        elseif  t >= 5*dt + t_0 && t < 6*dt + t_0
+            delta_e = 0;
+            delta_a = delta_a_max;
+            delta_r = 0;
+        elseif t >= 6*dt + t_0 && t < 7*dt + t_0
+            delta_e = 0;
+            delta_a = -delta_a_max;
+            delta_r = 0;
+        elseif t >= 7*dt + t_0 && t < 9*dt + t_0
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = 0;
+        elseif t >= 9*dt + t_0 && t < 12*dt + t_0
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = delta_r_max;
+        elseif t >= 12*dt + t_0 && t < 14*dt + t_0
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = -delta_r_max;
+        elseif t >= 14*dt + t_0 && t < 15*dt + t_0
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = delta_r_max;
+        elseif t >= 15*dt + t_0 && t < 16*dt + t_0
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = -delta_r_max;
+        else
+            delta_e = 0;
+            delta_a = 0;
+            delta_r = 0;
+        end
+        
     end
 
     delta = [delta_e; delta_a; delta_r; delta_t];

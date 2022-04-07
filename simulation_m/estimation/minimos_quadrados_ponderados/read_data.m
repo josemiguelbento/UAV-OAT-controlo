@@ -25,6 +25,8 @@ function [data] = read_data(filepath)
 %%%%%%%%%%%%%%% 3211 laterais %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fid = fopen('txt_logs_wAeroAccel\2022-03-18_20.30.txt','rt'); %-20<d_a<20
 % fid = fopen('txt_logs_wAeroAccel\2022-03-18_21.02.txt','rt'); %-25<d_r<25
+% fid = fopen('txt_logs_wAeroAccel\d_a_followedby_d_r.txt','rt');
+%-20<d_a<20 followed by -25<d_r<25
 
 
 fid = fopen(filepath,'rt');
