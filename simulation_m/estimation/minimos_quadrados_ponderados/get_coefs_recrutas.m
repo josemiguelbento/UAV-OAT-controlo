@@ -64,12 +64,12 @@ C.C_n_delta_r   = -0.032;
 % [data] = read_data('txt_logs_wAeroAccel\2022-03-18_00.29.txt'); %d_e
 
 %% Lateral
-% [data1] = read_data('txt_logs_wAeroAccel\2022-03-18_20.30.txt'); %d_a
-% [data2] = read_data('txt_logs_wAeroAccel\2022-03-18_21.02.txt'); %d_r
-% data1_t = struct2table(data1);
-% data2_t = struct2table(data2);
-% data_t = [data1_t; data2_t];
-% data = table2struct(data_t);
+[data1] = read_data('txt_logs_wAeroAccel\2022-03-18_20.30.txt'); %d_a
+[data2] = read_data('txt_logs_wAeroAccel\2022-03-18_21.02.txt'); %d_r
+data1_t = struct2table(data1);
+data2_t = struct2table(data2);
+data_t = [data1_t; data2_t];
+data = table2struct(data_t);
 % Lateral or %
 % [data] = read_data('txt_logs_wAeroAccel\d_a_followedby_d_r.txt'); % d_a followed by d_r
 
@@ -100,7 +100,17 @@ C.C_n_delta_r   = -0.032;
 %Compute angular accelerations - finite differences method 
 [p_dot] = finite_differences([data.p]); 
 [q_dot] = finite_differences([data.q]); 
-[r_dot] = finite_differences([data.r]); 
+[r_dot] = finite_differences([data.r]);
+% para laterais com dif finitas de 3 ordem funciona melhor
+% [p1_dot] = finite_differences([data1.p]); 
+% [q1_dot] = finite_differences([data1.q]); 
+% [r1_dot] = finite_differences([data1.r]);
+% [p2_dot] = finite_differences([data2.p]); 
+% [q2_dot] = finite_differences([data2.q]); 
+% [r2_dot] = finite_differences([data2.r]); 
+% [p_dot] = [p1_dot p2_dot]; 
+% [q_dot] = [q1_dot q2_dot]; 
+% [r_dot] = [r1_dot r2_dot]; 
 
 %Compute roll, pich and yaw moments
  [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
@@ -187,13 +197,13 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 
 %Plots
 % Longitudinais
-%error_plots([data.time], CL_real, CL_est, "CL"); 
-%error_plots([data.time], CD_real, CD_est, "CD");
-%error_plots([data.time], Cm_real, Cm_est, "Cm");
+% error_plots([data.time], CL_real, CL_est, "CL"); 
+% error_plots([data.time], CD_real, CD_est, "CD");
+% error_plots([data.time], Cm_real, Cm_est, "Cm");
 % Laterais
-error_plots([data.time], CY_real, CY_est, "CY"); 
-error_plots([data.time], Cl_real, Cl_est, "Cl");  
-error_plots([data.time], Cn_real, Cn_est, "Cn"); 
+% error_plots([data.time], CY_real, CY_est, "CY"); 
+% error_plots([data.time], Cl_real, Cl_est, "Cl");  
+% error_plots([data.time], Cn_real, Cn_est, "Cn"); 
 
 % error_plots([data.time], CL_real, CL2_real, "CL"); 
 % error_plots([data.time], CD_real, CD2_real, "CD"); 

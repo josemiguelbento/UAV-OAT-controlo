@@ -14,11 +14,11 @@ load anim/aircraft
 addpath('anim','util','trim')
 
 %T = 10; % simulation time in seconds
-T = 13; % for mode 3
+T = 10; % for mode 3
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-mode = 3;
+mode = 2;
 %delta_e_max = -P.G.delta_e_max; % -30 graus
 delta_e_max = -3/180*pi;
 delta_a_max = -P.G.delta_a_max; % -20 graus
