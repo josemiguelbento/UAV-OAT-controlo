@@ -18,10 +18,11 @@ T = 10; % for mode 3
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-mode = 2;
+mode = 1;
 %delta_e_max = -P.G.delta_e_max; % -30 graus
 delta_e_max = -3/180*pi;
 delta_a_max = -P.G.delta_a_max; % -20 graus
+%delta_a_max = -5/180*pi;
 %delta_r_max = -P.G.delta_r_max; % -45 graus
 delta_r_max = -25/180*pi;
 delta_t =0.4;
@@ -77,4 +78,4 @@ morePlots2
 % logTXT
 % logTXT_wAccel
 % logTXT_wAero
-% logTXT_wAeroAccel
+ logTXT_wAeroAccel

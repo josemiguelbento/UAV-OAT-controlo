@@ -98,19 +98,19 @@ data = table2struct(data_t);
 [CY] = compute_coefficients(Fy, rho, S_wing, [data.Va], 1);
 
 %Compute angular accelerations - finite differences method 
-[p_dot] = finite_differences([data.p]); 
-[q_dot] = finite_differences([data.q]); 
-[r_dot] = finite_differences([data.r]);
+% [p_dot] = finite_differences([data.p]); 
+% [q_dot] = finite_differences([data.q]); 
+% [r_dot] = finite_differences([data.r]);
 % para laterais com dif finitas de 3 ordem funciona melhor
-% [p1_dot] = finite_differences([data1.p]); 
-% [q1_dot] = finite_differences([data1.q]); 
-% [r1_dot] = finite_differences([data1.r]);
-% [p2_dot] = finite_differences([data2.p]); 
-% [q2_dot] = finite_differences([data2.q]); 
-% [r2_dot] = finite_differences([data2.r]); 
-% [p_dot] = [p1_dot p2_dot]; 
-% [q_dot] = [q1_dot q2_dot]; 
-% [r_dot] = [r1_dot r2_dot]; 
+[p1_dot] = finite_differences([data1.p]); 
+[q1_dot] = finite_differences([data1.q]); 
+[r1_dot] = finite_differences([data1.r]);
+[p2_dot] = finite_differences([data2.p]); 
+[q2_dot] = finite_differences([data2.q]); 
+[r2_dot] = finite_differences([data2.r]); 
+[p_dot] = [p1_dot p2_dot]; 
+[q_dot] = [q1_dot q2_dot]; 
+[r_dot] = [r1_dot r2_dot]; 
 
 %Compute roll, pich and yaw moments
  [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);

@@ -176,5 +176,12 @@ xlabel('Time [s]')
 legend('Observed','Location','best')
 hold on
 grid on
-
 end
+
+% figure
+% subplot(3,1,1)
+% plot(t,att(:,1)*180/pi,'Linewidth',1.5)
+% ylabel('\phi [deg]')
+% hold on
+% title('Aircraft Attitude','Fontsize',11)
+% grid on
