@@ -61,15 +61,27 @@ C.C_n_delta_r   = -0.032;
 
 %Get the data from the logs into a struct  
 %% Longitudinal
-% [data] = read_data('txt_logs_wAeroAccel\2022-03-18_00.29.txt'); %d_e
+[data] = read_data('txt_logs_wAeroAccel\2022-03-18_00.29.txt'); %d_e
+data_t = struct2table(data);
+data_t{:,:} = data_t{:,:} + wgn(size(data_t,1), size(data_t,2), -100); % 10^-5
+
+% for i=1:1001
+%     if abs(data_t.RCch2(i)) < 10^(-5)
+%         data_t.RCch2(i) = 0;
+%     end
+% end
+
+data = table2struct(data_t);
 
 %% Lateral
-[data1] = read_data('txt_logs_wAeroAccel\2022-03-18_20.30.txt'); %d_a
-[data2] = read_data('txt_logs_wAeroAccel\2022-03-18_21.02.txt'); %d_r
-data1_t = struct2table(data1);
-data2_t = struct2table(data2);
-data_t = [data1_t; data2_t];
-data = table2struct(data_t);
+% [data1] = read_data('txt_logs_wAeroAccel\2022-03-18_20.30.txt'); %d_a
+% [data2] = read_data('txt_logs_wAeroAccel\2022-03-18_21.02.txt'); %d_r
+% data1_t = struct2table(data1);
+% data2_t = struct2table(data2);
+% data_t = [data1_t; data2_t];
+% data_t{:,:} = data_t{:,:} + wgn(size(data_t,1), size(data_t,2), -100);
+% data = table2struct(data_t);
+
 % Lateral or %
 % [data] = read_data('txt_logs_wAeroAccel\d_a_followedby_d_r.txt'); % d_a followed by d_r
 
@@ -97,20 +109,20 @@ data = table2struct(data_t);
 %Compute lateral force coefficient
 [CY] = compute_coefficients(Fy, rho, S_wing, [data.Va], 1);
 
-%Compute angular accelerations - finite differences method 
-% [p_dot] = finite_differences([data.p]); 
-% [q_dot] = finite_differences([data.q]); 
-% [r_dot] = finite_differences([data.r]);
-% para laterais com dif finitas de 3 ordem funciona melhor
-[p1_dot] = finite_differences([data1.p]); 
-[q1_dot] = finite_differences([data1.q]); 
-[r1_dot] = finite_differences([data1.r]);
-[p2_dot] = finite_differences([data2.p]); 
-[q2_dot] = finite_differences([data2.q]); 
-[r2_dot] = finite_differences([data2.r]); 
-[p_dot] = [p1_dot p2_dot]; 
-[q_dot] = [q1_dot q2_dot]; 
-[r_dot] = [r1_dot r2_dot]; 
+%Compute angular accelerations - finite differences method - longitudinal
+[p_dot] = finite_differences([data.p]); 
+[q_dot] = finite_differences([data.q]); 
+[r_dot] = finite_differences([data.r]);
+% laterais
+% [p1_dot] = finite_differences([data1.p]); 
+% [q1_dot] = finite_differences([data1.q]); 
+% [r1_dot] = finite_differences([data1.r]);
+% [p2_dot] = finite_differences([data2.p]); 
+% [q2_dot] = finite_differences([data2.q]); 
+% [r2_dot] = finite_differences([data2.r]); 
+% [p_dot] = [p1_dot p2_dot]; 
+% [q_dot] = [q1_dot q2_dot]; 
+% [r_dot] = [r1_dot r2_dot]; 
 
 %Compute roll, pich and yaw moments
  [l, m, n] = compute_moments(Ixx, Iyy, Izz, Ixz, p_dot, q_dot, r_dot, data);
