@@ -1,7 +1,7 @@
-function [pwm2deg_ail, pwm2deg_el, pwm2deg_rud] = PWM2degree(filename)
+function [pwm2deg_ail, pwm2deg_el, pwm2deg_rud] = PWM2degree()
 
 % Excel name
-% filename = 'PWM2degree_v3.xlsx';
+filename = 'PWM2degree_v3.xlsx';
 
 % Sheet numbers
 Ail_esq = 1;
@@ -117,5 +117,17 @@ pwm2deg_rud = @(x) p_rud(1).*x.^4 + p_rud(2).*x.^3 + p_rud(3).*x.^2 + p_rud(4).*
 % title('Rud', 'Interpreter', 'none')
 % ylabel('Degree', 'Interpreter', 'none')
 % xlabel('PWM', 'Interpreter', 'none')
+% grid on
+% 
+% figure()
+% xx = linspace(-5000,5000);
+% plot(xx,pwm2deg_ail_dir(xx),'-b','LineWidth',1.5)
+% hold on
+% plot(xx,pwm2deg_ail_esq(xx),'-k','LineWidth',1.5)
+% plot(xx,pwm2deg_ail(xx),'-r','LineWidth',1.5)
+% legend('Ail_dir','Ail_esq','Media','Location','southeast','Interpreter','none')
+% ylabel('Degree', 'Interpreter', 'none')
+% xlabel('PWM', 'Interpreter', 'none')
+% title('Compare Ailerons', 'Interpreter', 'none')
 % grid on
 end

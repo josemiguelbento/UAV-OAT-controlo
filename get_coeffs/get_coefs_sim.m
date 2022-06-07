@@ -1,6 +1,8 @@
 % UAV-ART // Aerotec - Nucleo de estudantes de Engenharia Aeroespacial
 % Estimation of aerodynamic coefficients 
-% Authors: - Mariana Ribeiro
+% Authors: - Mariana Ribeiro 
+%          - Tomás Nunes 
+%          - João Peixoto
 clear all; 
 close all;
 clc; 
@@ -254,10 +256,3 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 % error_plots([data.time], Cl_real, Cl_est_s, "Cl - Simplified Model "); 
 % error_plots([data.time], Cm_real, Cm_est_s, "Cm - Simplified Model"); 
 % error_plots([data.time], Cn_real, Cn_est_s, "Cn - Simplified Model"); 
-
-%%
-
-
-
-
-
