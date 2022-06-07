@@ -38,6 +38,7 @@ data_aux.RCch2 = pwm2deg_el(data_aux.delta_e);
 data_aux.RCch3 = data_aux.delta_t;
 data_aux.RCch4 = pwm2deg_rud(data_aux.delta_r);
 
+% Plot maneuvers in PWM and Degree 
 plot_PWM_deg(data_aux)
 
 %% Convert format of struct to the one used in algorithm
