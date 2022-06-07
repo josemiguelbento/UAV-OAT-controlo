@@ -27,7 +27,7 @@ k_Omega = 0;
 
 %% Get data
 data_load = load('./flight_data_1/ProcessedData_2022_05_07_12_57_56.mat');
-data_aux = data_load.ail_1;
+data_aux = data_load.ail_2;
 
 %% Convert PWM to Degree
 % RCch1 = delta_a; RCch2 = delta_e: RCch3 = delta_t; RCch4 = delta_r
@@ -43,7 +43,11 @@ plot_PWM_deg(data_aux)
 
 %% Convert format of struct to the one used in algorithm
 % (1x1) struct to (Nx1) struct
-data = table2struct(struct2table(data_aux));
+data_T = struct2table(data_aux);
+data_T.Properties.VariableNames{'roll'} = 'phi';
+data_T.Properties.VariableNames{'pitch'} = 'theta';
+data_T.Properties.VariableNames{'yaw'} = 'psi';
+data = table2struct(data_T);
 
 %% Compute linear accelerations - finite differences method 
 %acceleration from data, without using finite differences above
@@ -104,12 +108,12 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 % Longitunidal
 row_names = {'_0','_alpha','_q','_delta_e'};
 col_names = {'CL_coeffs','CD_coeffs','Cm_coeffs'};
-T = table(CL_coeffs(:),CD_coeffs(:),Cm_coeffs(:),'VariableNames',col_names,'RowNames',row_names)
+Long_T = table(CL_coeffs(:),CD_coeffs(:),Cm_coeffs(:),'VariableNames',col_names,'RowNames',row_names)
 
 % Lateral
 row_names = {'_0','_beta','_p','_r','_delta_a','_delta_r'};
 col_names = {'CY_coeffs','Cl_coeffs','Cn_coeffs'};
-T = table(CY_coeffs(:),Cl_coeffs(:),Cn_coeffs(:),'VariableNames',col_names,'RowNames',row_names)
+Lat_T = table(CY_coeffs(:),Cl_coeffs(:),Cn_coeffs(:),'VariableNames',col_names,'RowNames',row_names)
 
 
 
