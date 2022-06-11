@@ -7,18 +7,18 @@ clear all;
 close all;
 clc; 
 
-% Parameters - PRECISO POR OS CERTOS
-mass    = 25;
+% Parameters - faltam constantes do motor
+mass    = 3.3;
 rho     = 1.2682;
-S_wing  = 0.55;
-b       = 2.8956;
-c       = 0.18994;
-g       = 9.8;
-Ixx     = 0.8244;
-Iyy     = 1.135;
-Izz     = 1.759;
-Ixz     = 0.1204;
-S_prop  = 0.2027;
+S_wing  = 0.384;
+b       = 1.6;
+c       = 0.24;
+g       = 9.80665;
+Ixx     = 0.170;
+Iyy     = 0.289;
+Izz     = 0.443;
+Ixz     = 0.019;
+S_prop  = 0.085633564;
 k_motor = 80;
 C_prop  = 1.0;
 k_T_P   = 0;
@@ -26,17 +26,17 @@ k_Omega = 0;
 
 
 %% Get data
-data_load = load('./flight_data_1/ProcessedData_2022_05_07_12_57_56.mat');
-data_aux = data_load.ail_2;
+data_load = load('./flight_data_1/ProcessedData_2022_05_07_11_13_57.mat');
+data_aux = data_load.el_1;
 
 %% Convert PWM to Degree
 % RCch1 = delta_a; RCch2 = delta_e: RCch3 = delta_t; RCch4 = delta_r
 % In data: - delta in PWM; - RCch in degrees; - except delta_t and RCch3
 [pwm2deg_ail, pwm2deg_el, pwm2deg_rud] = PWM2degree();
-data_aux.RCch1 = pwm2deg_ail(data_aux.delta_a);
-data_aux.RCch2 = pwm2deg_el(data_aux.delta_e);
+data_aux.RCch1 = deg2rad(pwm2deg_ail(data_aux.delta_a));
+data_aux.RCch2 = deg2rad(pwm2deg_el(data_aux.delta_e));
 data_aux.RCch3 = data_aux.delta_t;
-data_aux.RCch4 = pwm2deg_rud(data_aux.delta_r);
+data_aux.RCch4 = deg2rad(pwm2deg_rud(data_aux.delta_r));
 
 % Plot maneuvers in PWM and Degree 
 plot_PWM_deg(data_aux)
@@ -47,6 +47,8 @@ data_T = struct2table(data_aux);
 data_T.Properties.VariableNames{'roll'} = 'phi';
 data_T.Properties.VariableNames{'pitch'} = 'theta';
 data_T.Properties.VariableNames{'yaw'} = 'psi';
+% data_T.RCch1 = zeros(300,1);
+% data_T.RCch4 = zeros(300,1);
 data = table2struct(data_T);
 
 %% Compute linear accelerations - finite differences method 

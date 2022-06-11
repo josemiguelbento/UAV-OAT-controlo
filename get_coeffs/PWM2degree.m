@@ -1,7 +1,7 @@
 function [pwm2deg_ail, pwm2deg_el, pwm2deg_rud] = PWM2degree()
 
 % Excel name
-filename = 'PWM2degree_v3.xlsx';
+filename = 'PWM2degree_v4.xlsx';
 
 % Sheet numbers
 Ail_esq = 1;

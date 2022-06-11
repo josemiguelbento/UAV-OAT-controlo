@@ -1,6 +1,7 @@
 Log Manobras - Test Flight dia 07/05 Vendas Novas
 
 2022-05-07 11-13-57.bin:
+(bias: delta_a = -132PWM; delta_e = 35PWM; delta_r = -17PWM)
 > Elevator:
 	>> 8min 53.1s - 8min 59.1s
 	>> 9min 28.5s - 9min 35.1s
@@ -18,6 +19,7 @@ Log Manobras - Test Flight dia 07/05 Vendas Novas
 
 
 2022-05-07 12-57-56.bin:
+(bias: delta_a = -220PWM; delta_e = 26PWM; delta_r = -17PWM)
 > Ailerons:
 	>> 14min 56.1s - 15min 4.6s
 	>> 15min 33.0s - 15min 41.5s 

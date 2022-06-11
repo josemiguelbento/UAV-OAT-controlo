@@ -65,7 +65,7 @@ C.C_n_delta_r   = -0.032;
 %% Longitudinal
 [data] = read_data('txt_logs_wAeroAccel\2022-03-18_00.29.txt'); %d_e
 data_t = struct2table(data);
-data_t{:,:} = data_t{:,:} + wgn(size(data_t,1), size(data_t,2), -100); % 10^-5
+data_t{:,:} = data_t{:,:} + wgn(size(data_t,1), size(data_t,2), -10); % 10^-5
 
 % for i=1:1001
 %     if abs(data_t.RCch2(i)) < 10^(-5)
