@@ -79,55 +79,55 @@ pwm2deg_rud = @(x) p_rud(1).*x.^4 + p_rud(2).*x.^3 + p_rud(3).*x.^2 + p_rud(4).*
 
 %% Plots
 % 
-% figure()
-% x_ail_esq = linspace(min(pwm_ail_esq),max(pwm_ail_esq));
-% plot(x_ail_esq, pwm2deg_ail_esq(x_ail_esq))
-% hold on
-% scatter(pwm_ail_esq, deg_ail_esq)
-% title('Ail_esq', 'Interpreter', 'none')
-% ylabel('Degree', 'Interpreter', 'none')
-% xlabel('PWM', 'Interpreter', 'none')
-% grid on
-% 
-% figure()
-% x_ail_dir = linspace(min(pwm_ail_dir),max(pwm_ail_dir));
-% plot(x_ail_dir, pwm2deg_ail_dir(x_ail_dir))
-% hold on
-% scatter(pwm_ail_dir, deg_ail_dir)
-% title('Ail_dir', 'Interpreter', 'none')
-% ylabel('Degree', 'Interpreter', 'none')
-% xlabel('PWM', 'Interpreter', 'none')
-% grid on
-% 
-% figure()
-% x_el = linspace(min(pwm_el),max(pwm_el));
-% plot(x_el, pwm2deg_el(x_el))
-% hold on
-% scatter(pwm_el, deg_el)
-% title('El', 'Interpreter', 'none')
-% ylabel('Degree', 'Interpreter', 'none')
-% xlabel('PWM', 'Interpreter', 'none')
-% grid on
-% 
-% figure()
-% x_rud = linspace(min(pwm_rud),max(pwm_rud));
-% plot(x_rud, pwm2deg_rud(x_rud))
-% hold on
-% scatter(pwm_rud, deg_rud)
-% title('Rud', 'Interpreter', 'none')
-% ylabel('Degree', 'Interpreter', 'none')
-% xlabel('PWM', 'Interpreter', 'none')
-% grid on
-% 
-% figure()
-% xx = linspace(-5000,5000);
-% plot(xx,pwm2deg_ail_dir(xx),'-b','LineWidth',1.5)
-% hold on
-% plot(xx,pwm2deg_ail_esq(xx),'-k','LineWidth',1.5)
-% plot(xx,pwm2deg_ail(xx),'-r','LineWidth',1.5)
-% legend('Ail_dir','Ail_esq','Media','Location','southeast','Interpreter','none')
-% ylabel('Degree', 'Interpreter', 'none')
-% xlabel('PWM', 'Interpreter', 'none')
-% title('Compare Ailerons', 'Interpreter', 'none')
-% grid on
+figure()
+x_ail_esq = linspace(min(pwm_ail_esq),max(pwm_ail_esq));
+plot(x_ail_esq, pwm2deg_ail_esq(x_ail_esq))
+hold on
+scatter(pwm_ail_esq, deg_ail_esq)
+title('Ail_esq', 'Interpreter', 'none')
+ylabel('Degree', 'Interpreter', 'none')
+xlabel('PWM', 'Interpreter', 'none')
+grid on
+
+figure()
+x_ail_dir = linspace(min(pwm_ail_dir),max(pwm_ail_dir));
+plot(x_ail_dir, pwm2deg_ail_dir(x_ail_dir))
+hold on
+scatter(pwm_ail_dir, deg_ail_dir)
+title('Ail_dir', 'Interpreter', 'none')
+ylabel('Degree', 'Interpreter', 'none')
+xlabel('PWM', 'Interpreter', 'none')
+grid on
+
+figure()
+x_el = linspace(min(pwm_el),max(pwm_el));
+plot(x_el, pwm2deg_el(x_el))
+hold on
+scatter(pwm_el, deg_el)
+title('El', 'Interpreter', 'none')
+ylabel('Degree', 'Interpreter', 'none')
+xlabel('PWM', 'Interpreter', 'none')
+grid on
+
+figure()
+x_rud = linspace(min(pwm_rud),max(pwm_rud));
+plot(x_rud, pwm2deg_rud(x_rud))
+hold on
+scatter(pwm_rud, deg_rud)
+title('Rud', 'Interpreter', 'none')
+ylabel('Degree', 'Interpreter', 'none')
+xlabel('PWM', 'Interpreter', 'none')
+grid on
+
+figure()
+xx = linspace(-5000,5000);
+plot(xx,pwm2deg_ail_dir(xx),'-b','LineWidth',1.5)
+hold on
+plot(xx,pwm2deg_ail_esq(xx),'-k','LineWidth',1.5)
+plot(xx,pwm2deg_ail(xx),'-r','LineWidth',1.5)
+legend('Ail_dir','Ail_esq','Media','Location','southeast','Interpreter','none')
+ylabel('Degree', 'Interpreter', 'none')
+xlabel('PWM', 'Interpreter', 'none')
+title('Compare Ailerons', 'Interpreter', 'none')
+grid on
 end

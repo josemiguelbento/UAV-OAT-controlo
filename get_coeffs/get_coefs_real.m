@@ -47,6 +47,14 @@ data_T = struct2table(data_aux);
 data_T.Properties.VariableNames{'roll'} = 'phi';
 data_T.Properties.VariableNames{'pitch'} = 'theta';
 data_T.Properties.VariableNames{'yaw'} = 'psi';
+data_T.phi = deg2rad(data_T.phi);
+data_T.psi = deg2rad(data_T.psi);
+data_T.theta = deg2rad(data_T.theta);
+data_T.AoA = deg2rad(data_T.AoA);
+data_T.beta = deg2rad(data_T.beta);
+data_T.p = deg2rad(data_T.p);
+data_T.q = deg2rad(data_T.q);
+data_T.r = deg2rad(data_T.r);
 % data_T.RCch1 = zeros(300,1);
 % data_T.RCch4 = zeros(300,1);
 data = table2struct(data_T);
@@ -116,6 +124,7 @@ Long_T = table(CL_coeffs(:),CD_coeffs(:),Cm_coeffs(:),'VariableNames',col_names,
 row_names = {'_0','_beta','_p','_r','_delta_a','_delta_r'};
 col_names = {'CY_coeffs','Cl_coeffs','Cn_coeffs'};
 Lat_T = table(CY_coeffs(:),Cl_coeffs(:),Cn_coeffs(:),'VariableNames',col_names,'RowNames',row_names)
+
 
 
 
