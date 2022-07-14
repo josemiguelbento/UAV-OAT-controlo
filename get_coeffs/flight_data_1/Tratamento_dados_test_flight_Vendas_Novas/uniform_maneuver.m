@@ -9,6 +9,8 @@ output.roll  =  zeros(length(input.p(:,1)),1);
 output.pitch =  zeros(length(input.p(:,1)),1);
 output.yaw   =  zeros(length(input.p(:,1)),1);
 
+output.h   =  zeros(length(input.p(:,1)),1);
+
 output.AoA  =  zeros(length(input.p(:,1)),1);
 output.beta =  zeros(length(input.p(:,1)),1);
 
@@ -34,6 +36,8 @@ output.az =  input.az(:,2);
 output.roll(1)  =  input.roll(aux_1,2);
 output.pitch(1) =  input.pitch(aux_1,2);
 output.yaw(1)   =  input.yaw(aux_1,2);
+
+output.h(1)   =  input.h(aux_1,2);
 
 output.AoA(1)  =  input.AoA(aux_2,2);
 output.beta(1) =  input.beta(aux_2,2);
@@ -72,10 +76,12 @@ for i=2:length(input.p(:,1))
         output.roll(i)  =  output.roll(i-1);
         output.pitch(i) =  output.pitch(i-1);
         output.yaw(i)   =  output.yaw(i-1);
+        output.h(i)   =  output.h(i-1);
     else
         output.roll(i)  =  input.roll(aux_1,2);
         output.pitch(i) =  input.pitch(aux_1,2);
         output.yaw(i)   =  input.yaw(aux_1,2);
+        output.h(i)   =  input.h(aux_1,2);
         if(aux_1 < length(input.roll(:,1)))
             aux_1 = aux_1 + 1;
         end

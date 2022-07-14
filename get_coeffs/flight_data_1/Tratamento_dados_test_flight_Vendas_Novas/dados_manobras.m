@@ -7,7 +7,7 @@ close all
 % ou
 % 2022_05_07_12_57_56.mat
 
-name = '2022_05_07_12_57_56';
+name = '2022_05_07_11_13_57';
 load(name+".mat");
 
 %% Selecao de Variaveis
@@ -15,6 +15,8 @@ load(name+".mat");
 data.roll = [AHR2(:,2), AHR2(:,3)]; %phi
 data.pitch = [AHR2(:,2), AHR2(:,4)]; %theta
 data.yaw = [AHR2(:,2), AHR2(:,5)]; %psi
+
+data.h = [AHR2(:,2), AHR2(:,6)];
 
 data.p = [IMU_0(:,2), IMU_0(:,4)];
 data.q = [IMU_0(:,2), IMU_0(:,5)];

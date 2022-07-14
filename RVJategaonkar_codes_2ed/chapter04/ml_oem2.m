@@ -19,7 +19,7 @@ global dt
 %-----------------------------------------------------------------------------------
 % Select the test case to be analyzed:
 % test_case = 1;               % Lateral-directional motion, n=2, m=5, p=3, ATTAS
-test_case = 2;               % Lateral motion, simulated data with turbulence
+% test_case = 2;               % Lateral motion, simulated data with turbulence
 % test_case = 3;               % Lateral-directional motion, n=2, m=2, p=3, ATTAS
 % test_case = 4;               % Longitudinal motion (Cl, CD, Cm), test A/C HFB-320
 
@@ -31,7 +31,7 @@ test_case = 2;               % Lateral motion, simulated data with turbulence
 
 % test_case = 11;              % Short period motion, n=2, m=2, p=1, ATTAS
 
-% test_case = 22;              % Flight path reconstruction, ATTAS, NZI=3,
+test_case = 22;              % Flight path reconstruction, ATTAS, NZI=3,
                                % longitudinal and lateral-directional motion
                                
 % test_case = 23;              % Aero-model by Regression, ATTAS, NZI=3,
@@ -167,15 +167,15 @@ elseif (test_case == 34),
 else
     disp('Error Termination:');
     disp('Wrong specification of test_case.');
-    break;
+    % % break;
 end 
 
 % Verify model definition
 iError = mDefCHK_oem(test_case, Nx, Ny, Nu, NparSys, Nparam, NparID, Nzi, ... 
                      Nminmax, iOptim, param, parFlag, param_min, param_max, ...
                      x0, iArtifStab, StabMat);
-if iError ~= 0, break, end        % Error termination 
-                                    
+if iError ~= 0, % break        % Error termination 
+end                                   
 %-----------------------------------------------------------------------------------
 % parameter perturbation size for gradient computation by numerical approximation
 par_step  = 1e-6;
@@ -212,7 +212,7 @@ elseif (iOptim == 2),
 else
     disp('Error Termination:');
     disp('Wrong specification of the optimization method.');
-    break;
+    % % break;
 end
 
 if (strcmp(integMethod,'ruku2')),
@@ -224,7 +224,7 @@ elseif (strcmp(integMethod,'ruku4')),
 else
     disp('Error Termination:');
     disp('Wrong specification of the integration method.');
-    break;
+    % break;
 end
 
 % Initialize time counter
@@ -281,14 +281,14 @@ while iter <= niter_max;
     if (relerror < tolR) & (iter > 0),
         
         disp('convergence criterion is satisfied');
-        break;
+        % break;
         
     else
         
         if (iter == niter_max),
             if (currentCost < prevCost | niter_max == 0),
                 disp('Maximum number of iterations reached.');
-                break;
+                % break;
             else                  % to allow halving at itmax before terminating
                 disp('Intermediate divergence: halving of parameter step')
                 paramX0BX = (paramX0BX+param_old)/2;
@@ -303,7 +303,7 @@ while iter <= niter_max;
                 disp('Intermediate divergence!')
                 disp('Error termination:')
                 disp('No improvement after 10 times halving of parameter step.')
-                break;
+                % break;
             else
                 disp('Intermediate divergence: halving of parameter step')
                 paramX0BX = (paramX0BX+param_old)/2;
@@ -408,8 +408,8 @@ elseif (test_case == 23 | test_case ==24),
     [t]=plots_TC23_attas_regLonLat(t, Z, Y, Uinp, params, par_std, iter);
 elseif (test_case == 27),  
     [t]=plots_TC27_oem_regQStall(t, Z, Y, Uinp, params, par_std, iter);
-elseif (test_case == 22),  
-    [t]=plots_TC32_oem_fpr(t, Z, Y, Uinp, params, par_std, iter);
+% elseif (test_case == 22),  
+%     [t]=plots_TC32_oem_fpr(t, Z, Y, Uinp, params, par_std, iter);
 elseif (test_case == 31),
     [t]=plots_TC01_oem_lat(t, Z, Y, Uinp, params, par_std, iter);
 elseif (test_case == 32),  

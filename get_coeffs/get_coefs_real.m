@@ -112,7 +112,7 @@ k = diag(ones(6,1))*10^(-6); %completo lateral
 
 %% Tables
 
-% Longitunidal
+% Longitudinal
 row_names = {'_0','_alpha','_q','_delta_e'};
 col_names = {'CL_coeffs','CD_coeffs','Cm_coeffs'};
 Long_T = table(CL_coeffs(:),CD_coeffs(:),Cm_coeffs(:),'VariableNames',col_names,'RowNames',row_names)

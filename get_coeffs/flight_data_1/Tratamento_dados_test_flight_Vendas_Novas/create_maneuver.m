@@ -7,6 +7,8 @@ output.roll = select_maneuver(input.roll, time_min, time_max);
 output.pitch = select_maneuver(input.pitch, time_min, time_max);
 output.yaw = select_maneuver(input.yaw, time_min, time_max);
 
+output.h = select_maneuver(input.h, time_min, time_max);
+
 output.p = select_maneuver(input.p, time_min, time_max);
 output.q = select_maneuver(input.q, time_min, time_max);
 output.r = select_maneuver(input.r, time_min, time_max);
