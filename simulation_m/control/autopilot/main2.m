@@ -1,5 +1,5 @@
 clear all
-close all
+%close all
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Load structure with the physical parameters of the aircraft, its
@@ -18,7 +18,7 @@ T = 10; % for mode 3
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-mode = 1;
+mode = 0;
 %delta_e_max = -P.G.delta_e_max; % -30 graus
 delta_e_max = -3/180*pi;
 delta_a_max = -P.G.delta_a_max; % -20 graus
@@ -74,8 +74,9 @@ accel(:,3) = 1/P.mass * F_body(:,3) + ang_v(:,2).*v(:,1) - ang_v(:,1).*v(:,2); %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % drawAircraft(pos,att,V,F,facecolors,2e-3)
+% morePlots
 morePlots2
 % logTXT
 % logTXT_wAccel
 % logTXT_wAero
- logTXT_wAeroAccel
+% logTXT_wAeroAccel

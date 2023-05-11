@@ -83,7 +83,9 @@ Check_Case =  1;     % 1 time segment
 
 %----------------------------------------------------------------------------------------
 % Load flight data for Nzi time segments to be analyzed and concatenate 
-load -ascii \FVSysID\flt_data\hfb320_1_10.asc;     % flight data file
+data_load = load ('ProcessedData_2022_05_07_11_13_57.mat');     % flight data file
+
+fElv1 = load_fdata(data_load.el_1);
 
 if Check_Case == 1,    % Nzi=1
     Nzi  = 1;

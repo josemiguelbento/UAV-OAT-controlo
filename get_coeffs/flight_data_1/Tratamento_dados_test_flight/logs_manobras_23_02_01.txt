@@ -1,0 +1,13 @@
+Log Manobras - Test Flight dia 01/02 Lourinhã
+
+2023-02-01 14-21-28.bin:
+(bias: delta_a = -179PWM; delta_e = -192PWM; delta_r = 26PWM)
+> Elevator:
+	>> 9min 47.9s - 9min 54.9s
+
+> Ailerons:
+	>> 10min 20.3s - 10min 27.3s
+
+> Rudder: não fizemos
+
+

@@ -248,7 +248,7 @@ plot(t,180/pi*delta(:,2),'Linewidth',1.5)
 ylabel('\delta_a [deg]')
 xlabel('Time [s]')
 hold on
-title('Airelons','Fontsize',11)
+title('Ailerons','Fontsize',11)
 grid on
 
 subplot(2,2,3)
